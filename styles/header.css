@@ -1,0 +1,45 @@
+.header__container {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: #a150ec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 1px 1px 1px 1px rgb(197, 197, 197);
+}
+
+.header__container span {
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: bolder;
+  text-align: center;
+}
+
+.header__container button {
+  color: white;
+  background-color: #6f17c2;
+  padding: 0.5rem 0.7rem;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .header__container {
+    padding: 0.7rem;
+  }
+
+  .header__container span {
+    font-size: 1.2rem;
+  }
+
+  .header__container button {
+    padding: 0.5rem 0.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+}

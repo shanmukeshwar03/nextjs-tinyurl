@@ -1,0 +1,110 @@
+.signin__container {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.signin__container form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.signin__container h1 {
+  color: #424242;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.signin__container input {
+  outline: none;
+  border: none;
+  font-size: 1.4rem;
+  color: rgb(66, 66, 66);
+  letter-spacing: 1.2px;
+  width: 100%;
+}
+
+.input__container {
+  padding: 1rem;
+  border-bottom: 2px solid #ccc;
+  width: 60%;
+  display: flex;
+  gap: 1rem;
+}
+
+.input__container img {
+  width: 27px;
+  height: 27px;
+  filter: opacity(0.7);
+}
+
+.signin__container button {
+  background-color: #a24bf3;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  color: white;
+  height: 3rem;
+  width: 7rem;
+}
+
+.signin__container button:disabled {
+  background-color: #ccc;
+}
+
+.signin__link {
+  font-size: 1.4rem;
+}
+
+@media (width > 1200px) {
+  .signin__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .signin__background {
+    background: url('/login.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .signin__container form {
+    gap: 1.4rem;
+  }
+
+  .signin__container h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .signin__container input {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    width: 100%;
+  }
+
+  .input__container {
+    padding: 0.7rem;
+    width: 90%;
+  }
+
+  .input__container img {
+    width: 20px;
+    height: 20px;
+    filter: opacity(0.7);
+  }
+
+  .signin__container button {
+    font-size: 1rem;
+    height: 2rem;
+    width: 5rem;
+  }
+  .signin__link {
+    font-size: 1rem;
+  }
+}

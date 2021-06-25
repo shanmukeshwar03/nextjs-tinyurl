@@ -1,0 +1,48 @@
+.form__container {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+  padding: 0.5rem;
+}
+
+.form__container input {
+  padding: 0.7rem;
+  font-size: 1.4rem;
+  color: rgb(46, 46, 46);
+  border: 1px solid #ccc;
+  width: 95%;
+  letter-spacing: 1.2px;
+  border-radius: 3px;
+}
+
+.form__container button {
+  padding: 0.5rem 0.7rem;
+  font-size: 1rem;
+  background-color: #a150ec;
+  color: white;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .form__container {
+    gap: 1rem;
+    width: 100%;
+    padding: 0.3rem;
+  }
+
+  .form__container input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    width: 100%;
+    letter-spacing: 1px;
+  }
+
+  .form__container button {
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+}
