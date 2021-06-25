@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://854f0bb2fcbe.ngrok.io/',
+  baseURL: 'https://urlshortener.shnm.ml/',
   withCredentials: true,
   credentials: 'include',
 })

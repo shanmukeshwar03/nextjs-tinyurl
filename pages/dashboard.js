@@ -23,7 +23,6 @@ const Dashboard = () => {
     } catch (error) {
       router.replace('/auth/signin')
     }
-
   }
 
   if (loading) {
