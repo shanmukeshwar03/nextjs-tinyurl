@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://urlshortener.shnm.ml/',
+  baseURL: 'https://shnm.cf/',
   withCredentials: true,
   credentials: 'include',
 })
