@@ -1,0 +1,17 @@
+.button {
+  padding: 0.5rem 0.7rem;
+  border-radius: 3px;
+  font-size: 1.2rem;
+}
+
+.button.button-appbar {
+  background-color: #fff;
+  color: #8016e4;
+}
+
+@media screen and (max-width: 700px) {
+  .button {
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+  }
+}

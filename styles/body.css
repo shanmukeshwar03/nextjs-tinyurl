@@ -1,7 +1,6 @@
 .body__container {
   padding: 1rem;
   width: 97%;
-  height: 100%;
   overflow: scroll;
   scrollbar-width: none;
   display: flex;

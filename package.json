@@ -8,17 +8,20 @@
     "build": "next build",
     "export": "next export"
   },
-  "keywords": [],
+  "keywords": [
+    "shrinker",
+    "shortener",
+    "url"
+  ],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Url shortener online",
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.0",
     "axios": "^0.21.1",
     "next": "^10.2.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-redux": "^7.2.4",
-    "swr": "^0.5.6"
+    "react-redux": "^7.2.4"
   }
 }

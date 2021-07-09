@@ -1,40 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { initUrls } from 'redux/urls'
+import { removeUser } from 'redux/auth'
+import { delLoading, setLoading } from 'redux/utils'
+import { getUrl } from 'utils/axiosUrl'
+import Head from 'next/head'
 import Form from 'components/Form'
 import Body from 'components/Body'
-import axios from 'utils/axios'
-import Header from 'components/Header'
-import { useDispatch } from 'react-redux'
-import { initUrls } from 'redux/urls'
-import router from 'next/router'
-import Loading from 'components/Loading'
-import Head from 'next/head'
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
+  const auth = useSelector((state) => state.auth)
 
-  useEffect(() => { fetcher() }, [])
+  useEffect(() => {
+    const fetcher = async () => {
+      dispatch(setLoading())
+      const resp = await getUrl(auth.token)
 
-  const fetcher = async () => {
-    try {
-      const { data } = await axios.get('/url')
-      dispatch(initUrls(data))
-      setLoading(false)
-    } catch (error) {
-      router.replace('/auth/signin')
+      if (resp.data) dispatch(initUrls(resp.data))
+      else dispatch(removeUser())
+
+      dispatch(delLoading())
     }
-  }
-
-  if (loading) {
-    return <div className="center__container"> <Head><title>Loading</title></Head> <Loading /></div>
-  }
+    fetcher()
+  }, [])
 
   return (
     <div className="dashboard__container">
       <Head>
         <title>Dashboard</title>
       </Head>
-      <Header />
       <div className="dashboard__body">
         <Form />
         <Body />

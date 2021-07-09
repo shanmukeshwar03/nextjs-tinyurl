@@ -1,49 +1,30 @@
-import { createSlice, createAsyncThunk, Dispatch } from '@reduxjs/toolkit';
-import axios from 'utils/axios';
-import router from 'next/router';
+import { createSlice } from '@reduxjs/toolkit'
+import router from 'next/router'
 
-export const signin = createAsyncThunk('signin', async (payload) => {
-  try {
-    const response = await axios.post('auth/signin', payload);
-    return {
-      success: response.data,
-    };
-  } catch (error) {
-    return {
-      error: error,
-    };
-  }
-});
+let initialState = {
+  user: undefined,
+  token: undefined,
+}
+
+if (typeof window !== 'undefined') {
+  const localAuth = JSON.parse(localStorage.getItem('auth'))
+  if (localAuth) initialState = localAuth
+}
 
 const slice = createSlice({
   name: 'auth',
-  initialState: {
-    user: undefined,
-    signinLoading: false,
-    signupLoading: false,
-  },
+  initialState,
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user
+      state.token = action.payload.token
     },
     removeUser: (state, action) => {
-      state.user = undefined;
+      state.user = undefined
+      state.token = undefined
     },
   },
-  extraReducers: {
-    [signin.pending]: (state, action) => {
-      state.signinLoading = true;
-    },
-    [signin.fulfilled]: (state, action) => {
-      if (action.payload.error) {
-      } else {
-        state.user = action.payload.success;
-        router.replace('/dashboard');
-      }
-      state.signinLoading = false;
-    },
-  },
-});
+})
 
-export const { setUser, removeUser } = slice.actions;
-export default slice.reducer;
+export const { setUser, removeUser } = slice.actions
+export default slice.reducer

@@ -1,58 +1,36 @@
-import { useState, useEffect } from 'react'
-import axios from 'utils/axios'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { pushError } from 'redux/utils'
+import { delLoading, pushError, setLoading } from 'redux/utils'
 import { setUser } from 'redux/auth'
-import Loading from 'components/Loading'
-import router from 'next/router'
-import Link from 'next/link'
+import { register } from 'utils/axiosAuth'
 
 const Signup = () => {
   const [email, setemail] = useState('')
   const [username, setusername] = useState('')
   const [password, setpassword] = useState('')
   const [_password, _setpassword] = useState('')
-  const [loading, setloading] = useState(false)
   const [showpassword, setshowpassword] = useState(false)
-  const [pageLoading, setPageLoading] = useState(true)
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    fetcher();
-  }, [])
-
-  const fetcher = async () => {
-    try {
-      await axios.get('validateCookie')
-      router.replace('/dashboard')
-    } catch (error) {
-      setPageLoading(false)
-    }
-  }
-
-  const validator = () => {
-    if (password !== _password) {
-      dispatch(pushError("Passwords did'nt match"))
-      return false
-    }
-    return true
-  }
+  const validator = () => password === _password
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    setloading(true)
+    dispatch(setLoading())
+
     if (validator()) {
-      const payload = { email, username, password }
-      try {
-        const { data } = await axios.post('auth/signup', payload)
-        dispatch(setUser(data))
-        router.replace('/dashboard')
-      } catch (err) {
-        const { error } = err.response.data
-        dispatch(pushError(error))
+      const payload = { username, email, password }
+      const resp = await register(payload)
+      if (resp.data) {
+        dispatch(setUser(resp.data))
+      } else {
+        dispatch(pushError(resp))
+        dispatch(delLoading())
       }
+    } else {
+      dispatch(pushError("Passwords did'nt match"))
+      dispatch(delLoading())
     }
-    setloading(false)
   }
 
   const handleEmail = (event) => {
@@ -73,13 +51,6 @@ const Signup = () => {
 
   const handleShowPassword = () => {
     setshowpassword(!showpassword)
-  }
-
-
-  if (pageLoading) {
-    return <div className='center__container'>
-      <Loading />
-    </div>
   }
 
   return (
@@ -132,12 +103,7 @@ const Signup = () => {
             onClick={handleShowPassword}
           />
         </div>
-        <button type="submit" disabled={loading}>
-          {loading ? <Loading /> : 'Submit'}
-        </button>
-        <span className="signup__link">
-          Already a member? <Link href="/auth/signin">Signin</Link>
-        </span>
+        <button type="submit">Submit</button>
       </form>
       <div className="signup__background"></div>
     </div>
