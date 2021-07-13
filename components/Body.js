@@ -1,4 +1,3 @@
-import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { BASE, delUrl } from 'utils/axiosUrl'
 import { popUrl } from 'redux/urls'
@@ -16,12 +15,12 @@ const Body = () => {
   }
 
   if (!urls.length) {
-    return <span className="body__default">No URL's Found</span>
+    return <span className='body__default'>No URL's Found</span>
   }
 
   return (
-    <div className="body__container">
-      <div className="body__header">
+    <div className='body__container'>
+      <div className='body__header'>
         <span>Sno</span>
         <span>Long URL</span>
         <span>Short URL</span>
@@ -29,16 +28,25 @@ const Body = () => {
         <span></span>
       </div>
       {urls.map((url, key) => (
-        <div key={key} className="body__content">
+        <div key={key} className='body__content'>
           <span>{key + 1}.</span>
-          <a href={url.source} target="_blank">
+          <a href={url.source} target='_blank'>
             {url.source}
           </a>
-          <a href={BASE + url.shr} target="_blank">
+          <a href={BASE + url.shr} target='_blank'>
             {BASE + url.shr}
           </a>
           <span>{url.clicks}</span>
-          <span onClick={() => handleDelete(url._id)}>&#10060;</span>
+          <div className='button__grid'>
+            <img
+              className='icon'
+              src='/icons/copy.svg'
+              onClick={() => {
+                navigator.clipboard.writeText(BASE + url.shr)
+              }}
+            />
+            <span onClick={() => handleDelete(url._id)}>&#10060;</span>
+          </div>
         </div>
       ))}
     </div>

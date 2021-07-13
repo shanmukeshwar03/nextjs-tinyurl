@@ -54,58 +54,58 @@ const Signup = () => {
   }
 
   return (
-    <div className="signup__container">
+    <div className='signup__container'>
       <form onSubmit={onSubmit}>
         <h1>Join us</h1>
-        <div className="input__container">
-          <img src="/email.svg" />
+        <div className='input__container'>
+          <img src='/icons/email.svg' />
           <input
             value={email}
             onChange={handleEmail}
-            placeholder="Email"
+            placeholder='Email'
             required
           />
         </div>
-        <div className="input__container">
-          <img src="/user.svg" />
+        <div className='input__container'>
+          <img src='/icons/user.svg' />
           <input
             value={username}
             onChange={handleUsername}
-            placeholder="Username"
+            placeholder='Username'
             required
           />
         </div>
-        <div className="input__container">
-          <img src="/password.svg" />
+        <div className='input__container'>
+          <img src='/icons/password.svg' />
           <input
             type={showpassword ? 'text' : 'password'}
             value={password}
             onChange={handlePassword}
-            placeholder="Password"
+            placeholder='Password'
             required
           />
           <img
-            src={showpassword ? '/eye-off.svg' : '/eye-on.svg'}
+            src={showpassword ? '/icons/eye-off.svg' : '/icons/eye-on.svg'}
             onClick={handleShowPassword}
           />
         </div>
-        <div className="input__container">
-          <img src="/password.svg" />
+        <div className='input__container'>
+          <img src='/icons/password.svg' />
           <input
             type={showpassword ? 'text' : 'password'}
             value={_password}
             onChange={_handlePassword}
-            placeholder="Confirm Password"
+            placeholder='Confirm Password'
             required
           />
           <img
-            src={showpassword ? '/eye-off.svg' : '/eye-on.svg'}
+            src={showpassword ? '/icons/eye-off.svg' : '/icons/eye-on.svg'}
             onClick={handleShowPassword}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
-      <div className="signup__background"></div>
+      <div className='signup__background'></div>
     </div>
   )
 }

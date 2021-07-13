@@ -61,7 +61,7 @@
     grid-template-columns: 1fr 1fr;
   }
   .signup__background {
-    background: url('/login.svg');
+    background: url('/icons/login.svg');
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;

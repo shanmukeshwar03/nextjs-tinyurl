@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { initUrls } from 'redux/urls'
-import { removeUser } from 'redux/auth'
+import { delUser } from 'redux/auth'
 import { delLoading, setLoading } from 'redux/utils'
 import { getUrl } from 'utils/axiosUrl'
 import Head from 'next/head'
@@ -18,7 +18,7 @@ const Dashboard = () => {
       const resp = await getUrl(auth.token)
 
       if (resp.data) dispatch(initUrls(resp.data))
-      else dispatch(removeUser())
+      else dispatch(delUser())
 
       dispatch(delLoading())
     }
@@ -26,15 +26,15 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <div className="dashboard__container">
+    <div className='dashboard__container'>
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div className="dashboard__body">
+      <div className='dashboard__body'>
         <Form />
         <Body />
       </div>
-      <div className="dashboard__background"></div>
+      <div className='dashboard__background'></div>
     </div>
   )
 }

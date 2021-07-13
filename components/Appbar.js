@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { removeUser } from 'redux/auth'
+import { delUser } from 'redux/auth'
 import { delLoading, setLoading } from 'redux/utils'
 import Loading from 'components/Loading'
 
@@ -33,25 +33,25 @@ const Appbar = () => {
   if (utils.loading) return <Loading />
 
   return (
-    <div className="appbar__container">
+    <div className='appbar__container'>
       <h1>Url Shortener</h1>
       {auth.token ? (
         <button
-          className="button button-appbar"
-          onClick={() => dispatch(removeUser())}
+          className='button button-appbar'
+          onClick={() => dispatch(delUser())}
         >
           Logout
         </button>
       ) : router.pathname === '/signin' ? (
         <button
-          className="button button-appbar"
+          className='button button-appbar'
           onClick={() => router.push('/signup')}
         >
           signup
         </button>
       ) : (
         <button
-          className="button button-appbar"
+          className='button button-appbar'
           onClick={() => router.push('/signin')}
         >
           signin

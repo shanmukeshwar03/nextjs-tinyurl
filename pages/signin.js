@@ -38,35 +38,35 @@ const Signin = () => {
   }
 
   return (
-    <div className="signin__container">
+    <div className='signin__container'>
       <form onSubmit={onSubmit}>
         <h1>Welcome back</h1>
-        <div className="input__container">
-          <img src="/email.svg" />
+        <div className='input__container'>
+          <img src='/icons/email.svg' />
           <input
             value={email}
             onChange={handleEmail}
-            placeholder="Email"
+            placeholder='Email'
             required
           />
         </div>
-        <div className="input__container">
-          <img src="/password.svg" />
+        <div className='input__container'>
+          <img src='/icons/password.svg' />
           <input
             type={showpassword ? 'text' : 'password'}
             value={password}
             onChange={handlePassword}
-            placeholder="Password"
+            placeholder='Password'
             required
           />
           <img
-            src={showpassword ? '/eye-off.svg' : '/eye-on.svg'}
+            src={showpassword ? '/icons/eye-off.svg' : '/icons/eye-on.svg'}
             onClick={handleShowPassword}
           />
         </div>
-        <button type="submit">Submit</button>
+        <button type='submit'>Submit</button>
       </form>
-      <div className="signin__background"></div>
+      <div className='signin__background'></div>
     </div>
   )
 }
