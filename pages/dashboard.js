@@ -1,42 +1,44 @@
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { initUrls } from 'redux/urls'
-import { delUser } from 'redux/auth'
-import { delLoading, setLoading } from 'redux/utils'
-import { getUrl } from 'utils/axiosUrl'
-import Head from 'next/head'
-import Form from 'components/Form'
-import Body from 'components/Body'
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { initUrls } from "redux/urls";
+import { delUser } from "redux/auth";
+import { delLoading, setLoading, pushError } from "redux/utils";
+import Head from "next/head";
+import Form from "components/Form";
+import Body from "components/Body";
+import axios from "axios";
 
 const Dashboard = () => {
-  const dispatch = useDispatch()
-  const auth = useSelector((state) => state.auth)
+  const dispatch = useDispatch();
+
+  const getUrlsFromServer = async () => {
+    dispatch(setLoading());
+    try {
+      const response = await axios.get(process.env.BASE_URL + "/url");
+      if (response.data) dispatch(initUrls(response.data));
+      else dispatch(delUser());
+    } catch (error) {
+      dispatch(pushError(error.response.data));
+    }
+    dispatch(delLoading());
+  };
 
   useEffect(() => {
-    const fetcher = async () => {
-      dispatch(setLoading())
-      const resp = await getUrl(auth.token)
-
-      if (resp.data) dispatch(initUrls(resp.data))
-      else dispatch(delUser())
-
-      dispatch(delLoading())
-    }
-    fetcher()
-  }, [])
+    getUrlsFromServer();
+  }, []);
 
   return (
-    <div className='dashboard__container'>
+    <div className="dashboard__container">
       <Head>
         <title>Dashboard</title>
       </Head>
-      <div className='dashboard__body'>
+      <div className="dashboard__body">
         <Form />
         <Body />
       </div>
-      <div className='dashboard__background'></div>
+      <div className="dashboard__background"></div>
     </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
