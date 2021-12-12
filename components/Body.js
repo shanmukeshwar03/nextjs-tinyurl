@@ -4,6 +4,7 @@ import { pushError } from "redux/utils";
 import axios from "axios";
 
 const BASE_URL = process.env.BASE_URL;
+const SHRINK_URL = process.env.SHRINK_URL;
 
 const Body = () => {
   const urls = useSelector((state) => state.urls.urls);
@@ -38,8 +39,8 @@ const Body = () => {
           <a href={url.source} target="_blank">
             {url.source}
           </a>
-          <a href={BASE_URL + "/" + url.shr} target="_blank">
-            {BASE_URL + "/" + url.shr}
+          <a href={SHRINK_URL + "/" + url.shr} target="_blank">
+            {SHRINK_URL + "/" + url.shr}
           </a>
           <span>{url.clicks}</span>
           <div className="button__grid">
@@ -47,7 +48,7 @@ const Body = () => {
               className="icon"
               src="/icons/copy.svg"
               onClick={() => {
-                navigator.clipboard.writeText(BASE_URL + "/" + url.shr);
+                navigator.clipboard.writeText(SHRINK_URL + "/" + url.shr);
               }}
             />
             <span onClick={() => handleDelete(url._id)}>&#10060;</span>
